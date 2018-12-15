@@ -1,3 +1,6 @@
+require "byebug"
+
+
 # A Very Hungry Octopus wants to eat the longest fish in an array of fish.
 #
 arr = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh', 'fiiiissshhhhhh']
@@ -29,11 +32,25 @@ def sluggish_oct(arr)
 end
 
 
-
-
 # Dominant Octopus
 # Find the longest fish in O(n log n) time. Hint: You saw a sorting algorithm that runs in O(n log n) in the Sorting Complexity Demo. Accessing this on GitHub? Use this link. Remember that Big O is classified by the dominant term.
+# they want quick sort or merge sort? did quick
 
+def dominant_oct_sort(arr)
+  return arr if arr.length <= 1
+  mid_idx = arr.length / 2
+  mid = arr[mid_idx]
+  arr = arr[0...mid_idx] + arr[mid_idx + 1..-1]
+
+  left = arr.select { |fish| fish.length <= mid.length }
+  right = arr.select { |fish| fish.length > mid.length }
+
+  dominant_oct_sort(left) + [mid] + dominant_oct_sort(right)
+end
+
+def dominant_oct(arr)
+  dominant_oct_sort(arr).last
+end
 
 
 
