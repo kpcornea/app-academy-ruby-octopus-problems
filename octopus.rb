@@ -5,23 +5,39 @@ arr = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh', 
 
 # Sluggish Octopus
 # Find the longest fish in O(n2) time. Do this by comparing all fish lengths to all other fish lengths
-# bubble sort?
+# bubble sort? i think so. review bubble sort lol i keep forgetting. also general algo work, been a while (heh, get it?)
 
 def sluggish_oct(arr)
-  longest = arr[0]
-  arr.each do |fish1|
-    arr.each do |fish2|
+  new_arr = arr.dup
+  sorted = true
 
+  i = 0
+  until sorted && i == new_arr.length - 1
+    if new_arr[i].length > new_arr[i + 1].length
+      new_arr[i], new_arr[i + 1] = new_arr[i + 1], new_arr[i]
+      sorted = false
+    end
+
+    i += 1
+    if i == arr.length - 1 && sorted == false
+      i = 0
+      sorted = true
     end
   end
+
+  new_arr.last
 end
 
 
 
-#
+
 # Dominant Octopus
 # Find the longest fish in O(n log n) time. Hint: You saw a sorting algorithm that runs in O(n log n) in the Sorting Complexity Demo. Accessing this on GitHub? Use this link. Remember that Big O is classified by the dominant term.
-#
+
+
+
+
+
 # Clever Octopus
 # Find the longest fish in O(n) time. The octopus can hold on to the longest fish that you have found so far while stepping through the array only once.
 
